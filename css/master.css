@@ -1,0 +1,33 @@
+
+body {
+	background-color: #F8f8f9;
+	height:100%;
+}
+
+.splash {
+	background-color: #272b30;
+	background-image: url(../image/background-1.jpg);
+	background-repeat: repeat-x;
+	background-position: top left;
+	height: 500px;
+	text-align: center;
+	position: relative;
+}
+
+.splash h2 {
+	position: relative;
+	top: calc( 50% - 80px);
+	font-size: 60px;
+	color: #fff;
+	text-shadow: 5px 5px 5px #000;
+}
+
+.feature {
+	background-color: #E9F5F5 ;
+	min-height: 200px;
+}
+
+.content-1 {
+	min-height: 200px;
+}
+
