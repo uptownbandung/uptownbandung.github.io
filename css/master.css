@@ -31,3 +31,15 @@ body {
 	min-height: 200px;
 }
 
+.section {
+	padding: 20px 0;
+}
+
+.caption-head {
+	font-size: 36px;
+}
+
+#services {
+	color: #666;
+}
+
