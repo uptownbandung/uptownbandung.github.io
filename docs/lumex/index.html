@@ -455,22 +455,14 @@
 										<p>unpack master file <code>laravel 5.x</code> zip to your target directory</p>
 									</li>
 									<li>
-										<h4>Migration</h4>
-										<hr class="bg-warning"></hr>
-										<p>Run migration from CLI</p>
-										<code class="pretty">$ php artisan migration</code>
-									</li>
-									<li>
-										<h4>Seeding</h4>
-										<hr class="bg-warning"></hr>
-										<p>Run seeding from CLI</p>
-										<code class="pretty">$ php artisan db:seed --class="smartseed"	</code>
-									</li>
-									<li>
 										<h4>Refresh Config</h4>
 										<hr class="bg-warning"></hr>
 										<p>Run refresh config from CLI</p>
-										<code class="pretty">$ php artisan config:cache</code>
+										<code class="pretty">
+											$ php artisan config:clear
+											
+											$ php artisan config:cache
+										</code>
 									</li>
 									<li>
 										<h4>Refresh View</h4>
@@ -483,6 +475,18 @@
 										<hr class="bg-warning"></hr>
 										<p>Run make view from CLI</p>
 										<code class="pretty">$ php artisan key:generate</code>
+									</li>
+									<li>
+										<h4>Migration</h4>
+										<hr class="bg-warning"></hr>
+										<p>Run migration from CLI</p>
+										<code class="pretty">$ php artisan migrate</code>
+									</li>
+									<li>
+										<h4>Seeding</h4>
+										<hr class="bg-warning"></hr>
+										<p>Run seeding from CLI</p>
+										<code class="pretty">$ php artisan db:seed --class="smartseed"	</code>
 									</li>
 									<li>
 										<h4>Reverse DB Table</h4>
@@ -517,10 +521,42 @@
 										For better understanding, please refer to official laravel documentation
 									</div>
 								</div>
+
+								<div class="panel panel-success">
+									<div class="panel-heading">
+										<h4 class="panel-title">Watch Video</h4>
+									</div>
+									<div class="panel-body">
+
+										<a class="" data-toggle="modal" href='#modal-id'>CLI Installation</a>
+											<div class="modal fade" id="modal-id">
+												<div class="modal-dialog modal-lg">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+															<h4 class="modal-title">CLI Installation</h4>
+														</div>
+														<div class="modal-body">
+
+															<div id="vid-cmdDemo" >
+																<video controls width="100%" height="auto">
+																	<source src="video/CmdDemo2.mp4" type="video/mp4">   
+																</video>
+															</div>				
+															
+														</div>
+													</div>
+												</div>
+											</div>	
+
+									</div>
+								</div>
+
 							</div>
 						</div>
 
 					</section>
+
 
 					<section id="auth" data-title="Auth Management">
 						
@@ -1858,25 +1894,36 @@
                                         <p>Return value: <code class="label label-danger">string</code> <code>""</code></p>
                                     </li>
                                     <li>
-                                        <h4>Load_app_options( $ )</h4>
+                                        <h4>Load_app_options( $group )</h4>
                                         <hr class="bg-success"></hr>
-                                        <p>this</p>
+                                        <p>Returning app option key and values within given group</p>
                                         <p>Example:</p>
                                         <code class="pretty">
-                                            $php
+                                            $theme = modelHelper::Load_app_options( 'theme' );
+                                            // return set of app option under 'theme' group
                                         </code>
-                                        <p>Return value: <code class="label label-danger">string</code> <code>""</code></p>
+                                        <p>Return value: <code class="label label-danger">array</code> </p>
                                     </li>
                                     <li>
-                                        <h4>( $ )</h4>
+                                        <h4>get_app_option( $key )</h4>
                                         <hr class="bg-success"></hr>
-                                        <p>this</p>
+                                        <p>Returning app option value within <code>group.key</code> </p>
                                         <p>Example:</p>
                                         <code class="pretty">
-                                            $php
+                                            $theme_id = modelHelper::get_app_options( 'theme.theme_id' );
                                         </code>
-                                        <p>Return value: <code class="label label-danger">string</code> <code>""</code></p>
+                                        <p>Return value: <code class="label label-danger">variant</code> </p>
                                     </li>
+	                                <li>
+	                                    <h4>set_app_option( $key , $value )</h4>
+	                                    <hr class="bg-success"></hr>
+	                                    <p>set app option value with given <code>group.key</code></p>
+	                                    <p>Example:</p>
+	                                    <code class="pretty">
+	                                        modelHelper::set_app_options( 'theme.theme_id' , 1 );
+	                                    </code>
+	                                    <p>Return value: <code class="label label-danger">null</code> </p>
+	                                </li>
                                 </ul>
                             </div>
                             <div class="col-md-3">
@@ -1887,30 +1934,284 @@
 
 
 						<h3>Export Helper</h3>
+						<div class="row">
+						    <div class="col-md-9">
+						        <p>Available Methods</p>
+						        <ul class="step-list">
+						        	<li>
+	                                    <h4>CSV( $filename, $model, $field, $title )</h4>
+	                                    <hr class="bg-success"></hr>
+	                                    <p>export data as csv file</p>
+	                                    <p><code class="label-success label">filename</code> : name of downloaded file </p>
+	                                    <p><code class="label-success label">model</code> : object model variable </p>
+	                                    <p><code class="label-success label">field</code> : array of field name to be shown </p>
+	                                    <p><code class="label-success label">title</code> : report title </p>
+	                                    <p>Example:</p>
+	                                    <code class="pretty">
+	                                        exportHelper::csv( $filename, $model, $field, $title );
+	                                    </code>
+	                                    <p>Return value: <code class="label label-danger">response object</code> </p>
+						        		
+						        	</li>
+						        	<li>
+	                                    <h4>XLS( $filename, $model, $field, $title )</h4>
+	                                    <hr class="bg-success"></hr>
+	                                    <p>export data as ms excel file</p>
+	                                    <p>Example:</p>
+	                                    <code class="pretty">
+	                                        exportHelper::xls( $filename, $model, $field, $title );
+	                                    </code>
+	                                    <p>Return value: <code class="label label-danger">response object</code> </p>
+						        		
+						        	</li>
+						        	<li>
+	                                    <h4>PDF( $filename, $model, $field, $title )</h4>
+	                                    <hr class="bg-success"></hr>
+	                                    <p>export data as pdf file</p>
+	                                    <p>Example:</p>
+	                                    <code class="pretty">
+	                                    	exportHelper::pdf( $filename, $model, $field, $title );
+	                                    </code>
+	                                    <p>Return value: <code class="label label-danger">response object</code> </p>
+						        		
+						        	</li>
+						        </ul>
+						    </div>
+						    <div class="col-md-3">
+						        
+						    </div>
+						</div>
+
+
 
 						<h3>Transform Helper</h3>
+						<div class="row">
+						    <div class="col-md-9">
+						        <p>Available method</p>
+						        <ul class="step-list">
+						        	<li>
+	                                    <h4>simple_transform(  $value , $arguments )</h4>
+	                                    <hr class="bg-success"></hr>
+	                                    <p>transfrom value into specified pattern</p>
+	                                    <p>Arguments</p>
+	                                    <p><code class="label label-success">html</code> : html pattern</p>
+	                                    <p>Example:</p>
+	                                    <code class="pretty">
+	                                    	transformHelper::simple_transform( 'world' , ['html' => 'hello $s !'] );
+	                                    	// hello world !
+	                                    </code>
+	                                    <p>Return value: <code class="label label-danger">string</code> </p>
+						        	</li>
+						        	<li>
+	                                    <h4>hyper_link( $value , $arguments )</h4>
+	                                    <hr class="bg-success"></hr>
+	                                    <p>transform value into hyperlink text</p>
+	                                    <p>Arguments</p>
+	                                    <p><code class="label label-success">url</code> : url as prefix</p>
+	                                    <p><code class="label label-success">target</code> : window target</p>
+	                                    <p><code class="label label-success">class</code> : css class</p>
+	                                    <p>Example:</p>
+	                                    <code class="pretty">
+                                            transformHelper::hyper_link( &#039;first_blog&#039; , [
+                                                &#039;url&#039;    =&gt; &#039;www.mysite.com/blog/&#039;, 
+                                                &#039;target&#039; =&gt; &#039;_self&#039;, 
+                                                &#039;class&#039;  =&gt; &#039;&#039;
+                                            ] );
+
+                                             // &lt;a href=&quot;www.mysite.com/blog/first_blog&quot; target=&quot;_self&quot; class=&quot;&quot; &gt;
+	                                    </code>
+	                                    <p>Return value: <code class="label label-danger">string</code> </p>
+						        	</li>
+						        	<li>
+	                                    <h4>static_list( $value , $arguments )</h4>
+	                                    <hr class="bg-success"></hr>
+	                                    <p>transform value to formatted text from static list</p>
+                                        <p>Arguments</p>
+                                        <p><code class="label label-success">lists</code> : array of static list</p>
+                                        <p><code class="label label-success">html</code> : html template</p>
+	                                    <p>Example:</p>
+	                                    <code class="pretty">
+                                            $arguments['lists'] = [
+                                                '1' => 'male' ,
+                                                '2' => 'female' ,
+                                            ];
+                                            $arguments['html'] = 'Gender : $s';
+
+                                            transformHelper::static_list( '1' , $lists );
+
+                                            // "Gender : male"
+	                                    </code>
+	                                    <p>Return value: <code class="label label-danger">string</code> </p>
+						        	</li>
+						        </ul>
+						    </div>
+						    <div class="col-md-3">
+						        
+						    </div>
+						</div>
+
+
 
 					</section>
 
 					<section id="transform" data-title="Data Transform">
-						
-						<h1>Data Transform</h1>
 
-						<h3>Controller</h3>
+						<h1>Data Transform</h1>
+                        <div class="row">
+                            <div class="col-md-9">
+
+                                <p>Transform manually (outside the generator) output from database to another patterned output</p>
+
+                                <h3>Controller</h3>
+                                <p>To make easy to track, transform formula placed in controller.</p>
+                                <p>There are 2 method to perform this tranform</p>
+                                <p><code>transform_model_rows</code> to transform multiple rows.</p>
+                                <p><code>transform_model_attribute</code> to transform single row.</p>
+                                <p>Example</p>
+                                <code class="pretty">
+                                    &lt;?php 
+
+                                    namespace App\Http\Controllers;
+
+                                    use App\Http\Controllers\Controller;
+
+                                    use Illuminate\Http\Request;
+                                    use Illuminate\Support\Facades\Response;
+
+
+                                    class testController extends Controller
+                                    {
+
+                                        // previous code
+                                        // ...
+
+                                        /*
+                                         * here you can transform attribute for show 
+                                         */
+                                        public function transform_model_attribute( &amp; $model )
+                                        {
+                                            // transform attribute formula here
+                                            // ...
+                                        }
+
+                                        /*
+                                         * here you can transform each row in data lists
+                                         */
+                                        public function transform_model_rows(&amp; $model )
+                                        {
+                                            
+                                            foreach ($model as $key =&gt; &amp; $row) {
+                                                // transform attribute formula here
+                                                // ...
+                                            };
+
+                                        }
+
+                                    }
+                                </code>
+                                
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
+
+
 
 						<h3>Multiple Rows</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>Tranforming multiple rows can be done with the example code below:</p>
+                                <p>Example</p>
+                                <code class="pretty">
+                                    public function transform_model_rows(&amp; $model )
+                                    {
+                                        
+                                        // change every rows that contain specific data item
+                                        foreach ($model as $key =&gt; &amp; $row) {
+
+                                            // change image url data to img tag
+                                            $row-&gt;image = &#039;&lt;img src=&quot;&#039; . asset(&#039;assets/image/&#039; . $row-&gt;image) . &#039;&quot; &gt;&#039;;
+
+                                            // change url link data to hyperlink
+                                            $row-&gt;link = &#039;&lt;a href=&quot;www.mysite.com/&#039; . $row-&gt;title .&#039;&quot; &gt;Link&lt;/a&gt;&#039;;
+                                        };
+
+                                    }
+                                </code>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
 
 						<h3>Single Rows</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>Tranforming multiple rows can be done with the example code below:</p>
+                                <p>Example</p>
+                                <code class="pretty">
+                                    public function transform_model_attribute( &amp; $model )
+                                    {
+                                        // change date format
+                                        $model->booking_date = date('j F YYY', $model->booking_date);
+
+                                        // change number format
+                                        $model->payment = format_number($model->payment, ',','.');
+                                    }
+
+                                </code>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
+
+
 
 					</section>
 
 					<section id="config" data-title="Config">
 						
 						<h1>Config</h1>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>Set or get config data from laravel config</p>
+                                <p>Config file live in <code>config</code> directory</p>
+                                <p><code class="label label-danger">Important !</code></p>
+                                <p>everytime we edit the config, it wont take effect until we refresh the cache</p>
+                                <code class="pretty">
+                                    $ php artisan config:cache
+                                </code>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
+
+
+
 
 						<h3>Web Config</h3>
-
-						<h3>Input Transform</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>Set or get config data about web in lumex environment.</p>
+                                <p>Containing general information about</p>
+                                <ul class="numeric-list green-bullet">
+                                    <li>HashID</li>
+                                    <li>Pagination</li>
+                                    <li>Extended form input template</li>
+                                </ul>
+                                <p>Example</p>
+                                <code class="pretty">
+                                    $pagination_current = config('web.pagination.current');
+                                </code>
+                                <p></p>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
 
 					</section>
 
@@ -2001,101 +2302,603 @@
                             </div>
                         </div>
 
-
-
-
-					</section>
-
-					<section id="extend" data-title="Extending Controller">
-						
-						<h1>Extending Controller</h1>
-
-						<h3>Laravel</h3>
-
-						<h3>Trait</h3>
-
-						<h3>Make Your Own (for advanced developer)</h3>
-
 					</section>
 
 					<section id="menu" data-title="Menu">
 						
 						<h1>Menu</h1>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>Menu manager is the tool to manage sidebar menu.</p>
+                                <p>With menu manager we can add, update or delete menu item.</p>
+                                <p>We can also manage menu item such as sorting, nesting with visual drag and drop.</p>
+                                <p>Menu manager can be reached from <span class="text-info">top menu</span> <span class="label label-warning">Laravel's Projects</span> <span class="fa fa-caret-right"></span> <span class="label label-warning">Menu Manager</span></p>
+                            </div>
+                            <div class="col-md-3">
+
+								<div class="panel panel-success">
+
+									<div class="panel-heading">
+										<h4 class="panel-title">Watch Video</h4>
+									</div>
+									<div class="panel-body">
+
+										<a class="" data-toggle="modal" href='#modal-id-2'>Menu Demo</a>
+											<div class="modal fade" id="modal-id-2">
+												<div class="modal-dialog modal-lg">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+															<h4 class="modal-title">Menu Demo</h4>
+														</div>
+														<div class="modal-body">
+
+															<div>
+																<video controls width="100%" height="auto">
+																	<source src="video/DemoMenu.mp4" type="video/mp4">   
+																</video>
+															</div>				
+															
+														</div>
+													</div>
+												</div>
+											</div>	
+										</div>
+
+									</div>
+                                
+                                
+                            </div>
+                        </div>
 
 						<h3>Add Menu</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>To add menu, follow this step:</p>
+                                <ul class="numeric-list green-bullet">
+                                    <li>On menu list, press button <code class="label label-success">NEW</code></li>
+                                    <li>Enter information as needed for each field</li>
+                                    <li>Press enter when done</li>
+                                </ul>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="images/menu_list_new.png" title="List Menu" alt="list menu" role="fancybox">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="images/menu_new.png" title="New Menu" alt="new menu" role="fancybox">
+                                    </div>
+                                    <div class="col-md-4">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                        </div>
+
 
 						<h3>Updating Menu Item</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>To Edit menu, follow this step:</p>
+                                <ul class="numeric-list green-bullet">
+                                    <li>On menu list, press button <code class="label label-success">Edit</code></li>
+                                    <li>Edit information as needed for each field</li>
+                                    <li>Press enter when done</li>
+                                </ul>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="images/menu_list_edit.png" title="List Menu" alt="list menu" role="fancybox">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="images/menu_edit.png" title="Edit Menu" alt="new menu" role="fancybox">
+                                    </div>
+                                    <div class="col-md-4">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
 
 						<h3>Delete Menu ITem</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>To Delete menu, follow this step:</p>
+                                <ul class="numeric-list green-bullet">
+                                    <li>On menu list, press button <code class="label label-success">Delete</code></li>
+                                    <li>Confirmation window will show up</li>
+                                    <li>Click <code>yes</code> to delete item</li>
+                                </ul>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="images/menu_list_delete.png" title="List Menu" alt="list menu" role="fancybox">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="images/menu_delete_confirm.png" title="Delete Menu Confirmation" alt="new menu" role="fancybox">
+                                    </div>
+                                    <div class="col-md-4">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
 
-						<h3>Drag and Drop</h3>
+						<h3>Sorting and Nesting</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>You can easily sorting and nesting by drag and drop menu component</p>
+                                <ul class="numeric-list green-bullet">
+                                    <li>On menu list, click button <code class="label label-success">Sort</code> on menu item</li>
+                                    <li>Drag and drop to sort at new position</li>
+                                    <li>Click <code>Apply</code> button to apply changes</li>
+                                </ul>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="images/menu_sort_button.png" title="List Menu" alt="list menu" role="fancybox">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="images/menu_sort_dnd.png" title="Drag and Drop Menu Position" alt="new menu" role="fancybox">
+                                    </div>
+                                    <div class="col-md-4">
+                                    </div>
+                                </div>
+                                <p></p>
+                                <p></p>
+                                <p></p>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
+
 
 					</section>
 
-					<section id="app_config" data-title="Application Config">
+					<section id="app_config" data-title="Setting Config">
 						
-						<h1>Application Config</h1>
+						<h1>Setting Config</h1>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>Setting application environment dynamically</p>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
 
-						<h3>App</h3>
+						<h3>Application </h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>Setting core information about application</p>
+                                <p>
+                                    <img src="images/setting_app.png" class="img-responsive">
+                                </p>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
 
 						<h3>Display</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>Setting display options</p>
+                                <p>
+                                    <img src="images/setting_display.png" class="img-responsive">
+                                </p>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
 
 						<h3>Reverse DB</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>Create base model for application</p>
+                                <p>
+                                    <img src="images/setting_reversedb.png" class="img-responsive">
+                                </p>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
 
 
 					</section>
 
-					<section id="bootstrap" data-title="Bootstrap">
-						
-						<h1>Bootstrap 3</h1>
+                    <section id="extend" data-title="Extending Controller">
+                        
+                        <h1>Extending Controller</h1>
 
-						<h3>CSS</h3>
+                        <h3>Controller</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>In laravel framework, every time we create controller, it always extends to <code>App\Http\Controllers\Controller</code>.</p>
+                                <p>The content of controller as below:</p>
+                                <code class="pretty">
+                                    &lt;?php
 
-						<h3>Component</h3>
+                                    namespace App\Http\Controllers;
 
-						<h3>JavaScript</h3>
+                                    use Illuminate\Foundation\Bus\DispatchesJobs;
+                                    use Illuminate\Routing\Controller as BaseController;
+                                    use Illuminate\Foundation\Validation\ValidatesRequests;
+                                    use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-					</section>
+                                    class Controller extends BaseController
+                                    {
+                                        use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+                                    }
+                                </code>
+                                <p>How if we need to extends more than single file <code>BaseController</code>?</p>
+                                <p>We do it by using <code>trait</code> class</p>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
 
-					<section id="smart" data-title="UI Framework">
-						
-						<h1>UI Framework</h1>
 
-						<h3>Table</h3>
+                        <h3>Trait</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>Trait like a class, or it still a class.</p>
+                                <p>The different is we can not extend trait with standard class extending</p>
+                                <code class="pretty">
+                                    class myClass extends otherClass 
+                                </code>
+                                <p>To call trait we using <code>use</code> statements</p>
+                                <code class="pretty">
+                                    namespace App\Http\Controllers;
 
-						<h3>Forms</h3>
+                                    use Illuminate\Routing\Controller as BaseController;
 
-						<h3>Button</h3>
+                                    use App\Traits\myTrait;
+                                    use App\Traits\myOtherTrait;
 
-					</section>
+                                    class Controller extends BaseController
+                                    {
+                                        use myTrait, myOtherTrait;
+                                    }
+                                </code>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-success">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">PHP Info</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p>For complete information about trait, refer to </p>
+                                        <p><a href="#">PHP Trait</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <h3>Make Your Own (for advanced developer)</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>To make your own trait, use following example</p>
+                                <code class="pretty">
+                                    &lt;?php
+
+                                    namespace App\Traits;
+
+                                    Trait MyTrait {
+
+                                        public function hello_world(){
+                                            return 'hello world';
+                                        }
+
+                                    }
+                                </code>
+                                <p>save filename as <code>app/Traits/MyTrait.php</code></p>
+                                <br>
+                                <p>include in base controller</p>
+                                <code class="pretty">
+                                    &lt;?php 
+
+                                    namespace App\Http\Controllers;
+
+                                    use Illuminate\Foundation\Bus\DispatchesJobs;
+                                    use Illuminate\Routing\Controller as BaseController;
+                                    use Illuminate\Foundation\Validation\ValidatesRequests;
+                                    use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+                                    use App\Traits\MyTrait;
+
+                                    class Controller extends BaseController
+                                    {
+                                        use AuthorizesRequests, DispatchesJobs, ValidatesRequests, MyTrait;
+                                    }
+                                </code>
+                                <p></p>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
+
+                    </section>
 
 					<section id="jsplugin" data-title="JS Plugins">
 						
 						<h1>JS Plugins</h1>
 
 						<h3>FancyBox</h3>
+						<div class="row">
+							<div class="col-md-9">
+								<h4>About</h4>
+								<p>FancyBox is a tool for displaying images, html content and multi-media in a Mac-style "lightbox" that floats overtop of web page.</p>
+								<p>It was built using the jQuery library. Licensed under both MIT and GPL licenses</p>
+								<code class="pretty">
+									$("a#single_image").fancybox();
+								</code>
+								<br>
+								<h4>Features</h4>
+								<ul class="numeric-list green-bullet">
+									<li>Can display images, HTML elements, SWF movies, Iframes and also Ajax requests</li>
+									<li>Customizable through settings and CSS</li>
+									<li>Groups related items and adds navigation.</li>
+									<li>If the mouse wheel plugin is included in the page then FancyBox will respond to mouse wheel events as well</li>
+									<li>Support fancy transitions by using easing plugin</li>
+									<li>Adds a nice drop shadow under the zoomed item</li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h4 class="panel-title">Fancybox</h4>
+									</div>
+									<div class="panel-body">
+										<p>For complete inforation about this plugin, please refer to </p>
+										<p><a href="http://fancybox.net/" target="_blank">Fancybox Site</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+
 
 						<h3>IonSlider</h3>
+						<div class="row">
+							<div class="col-md-9">
+								<h4>Description</h4>
+								<ul class="numeric-list green-bullet">
+									<li>Ion.RangeSlider — cool, comfortable, responsive and easily customizable range slider</li>
+									<li>Supports events and public methods, has flexible settings, can be completely altered with CSS</li>
+									<li>Cross-browser: Google Chrome, Mozilla Firefox 3.6+, Opera 12+, Safari 5+, Internet Explorer 8+</li>
+									<li>Ion.RangeSlider supports touch-devices (iPhone, iPad, Nexus, etc.).</li>
+								</ul>
+								<code class="pretty">
+									$("#range_01").ionRangeSlider();
+								</code>
+								<br>
+								<h4>Features</h4>
+								<ul class="numeric-list green-bullet">
+									<li>Any number of sliders at one page without conflicts and big performance problems</li>
+									<li>Two slider types single (1 slider) and double (2 sliders)</li>
+									<li>Support of negative and fractional values</li>
+									<li>Ability to set custom step and snap grid to step</li>
+									<li>Support of custom values diapason</li>
+									<li>Customisable grid of values</li>
+									<li>Ability to disable UI elements (min and max, current value, grid)</li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h4 class="panel-title">Ion Slider</h4>
+									</div>
+									<div class="panel-body">
+										<p>For complete inforation about this plugin, please refer to </p>
+										<p><a href="http://ionden.com/a/plugins/ion.rangeSlider/en.html" target="_blank">Ion Slider Site</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
 
 						<h3>Icon Picker</h3>
+						<div class="row">
+							<div class="col-md-9">
+								<h4>Description</h4>
+								<p>Simple Bootstrap 3 icon picker</p>
+								<code class="pretty">
+									&lt;button class=&quot;btn btn-default&quot; role=&quot;iconpicker&quot;&gt;&lt;/button&gt;
+								</code>
+								<br>
+								<h4>Features</h4>
+								<ul class="numeric-list green-bullet">
+									<li>Multiple icon set</li>
+									<li>Search input</li>
+									<li>Enable Label</li>
+									<li>Set Align (only ini Div tag)</li>
+									<li>Set Placement</li>
+									<li>etc</li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h4 class="panel-title">Icon Picker</h4>
+									</div>
+									<div class="panel-body">
+											<p>For complete inforation about this plugin, please refer to </p>
+										<p><a href="http://victor-valencia.github.io/bootstrap-iconpicker/" target="_blank">Icon Picker Site</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+
 
 						<h3>Date Picker</h3>
+						<div class="row">
+							<div class="col-md-9">
+								<h4>Description</h4>
+								<p>Bootstrap-datepicker provides a flexible datepicker widget in the Bootstrap style.</p>
+								<code class="pretty">
+									$('.datepicker').datepicker();
+								</code>
+								<br>
+								<h4>Features</h4>
+								<ul class="numeric-list green-bullet">
+									<li>Single or Multiple Date Range Set</li>
+									<li>Multiple date format</li>
+									<li>Auto close setting</li>
+									<li>Enable / Disable Date</li>
+									<li>Today Button</li>
+									<li>etc</li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h4 class="panel-title">Date Picker</h4>
+									</div>
+									<div class="panel-body">
+											<p>For complete inforation about this plugin, please refer to </p>
+										<p><a href="https://bootstrap-datepicker.readthedocs.io/en/latest/#" target="_blank">Date Picker Site</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+
 
 						<h3>Clock Picker</h3>
+						<div class="row">
+							<div class="col-md-9">
+								<h4>Description</h4>
+								<p>A clock-style timepicker for Bootstrap (or jQuery)</p>
+								<code class="pretty">
+									$('.clockpicker').clockpicker();
+								</code>
+								<br>
+								<h4>Features</h4>
+								<ul class="numeric-list green-bullet">
+									<li>All major browsers are supported, including IE 9+.</li>
+									<li>Both desktop and mobile device are supported. It also works great in touch screen device.</li>
+									<li>Can be placed at left, right, center align the arrow to top</li>
+									<li>Set auto close</li>
+									<li>etc</li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h4 class="panel-title">Date Picker</h4>
+									</div>
+									<div class="panel-body">
+											<p>For complete inforation about this plugin, please refer to </p>
+										<p><a href="https://weareoutman.github.io/clockpicker/" target="_blank">Clock Picker Site</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
 
 						<h3>Color Picker</h3>
+						<div class="row">
+							<div class="col-md-9">
+								<h4>Description</h4>
+								<p>Fancy and customizable colorpicker plugin for Twitter Bootstrap. Originally written by Stefan Petre and maintained by Javi Aguilar and the Github community.</p>
+								<code class="pretty">
+									$('.sample-selector').colorpicker({ /*options...*/ });
+								</code>
+								<br>
+								<h4>Features</h4>
+								<ul class="numeric-list green-bullet">
+									<li>All major browsers are supported, including IE 9+.</li>
+									<li>Multiple color format hex, rgb, rgba</li>
+									<li>Set as inline or floating element</li>
+									<li>Set align picker position </li>
+									<li>etc</li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h4 class="panel-title">Color Picker</h4>
+									</div>
+									<div class="panel-body">
+											<p>For complete inforation about this plugin, please refer to </p>
+										<p><a href="https://farbelous.github.io/bootstrap-colorpicker/" target="_blank">Color Picker Site</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+
 
 						<h3>Summer Note</h3>
+						<div class="row">
+							<div class="col-md-9">
+								<h4>Description</h4>
+								<p>Super Simple WYSIWYG Editor on Bootstrap Summernote is a JavaScript library that helps you create WYSIWYG editors online.</p>
+								<code class="pretty">
+									$('.summernote').summernote();
+								</code>
+								<br>
+								<h4>Features</h4>
+								<ul class="numeric-list green-bullet">
+									<li>Easy to Install, Simply download and attach your js, css with bootstrap.</li>
+									<li>Customize by Initializing various options and modules.</li>
+									<li>Open Source, Summernote is licensed under MIT and maintained by the community on.</li>
+									<li>Integration, Integrate it with any back-end. 3rd parties available in django, rails, angular.</li>
+									<li>etc</li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h4 class="panel-title">Color Picker</h4>
+									</div>
+									<div class="panel-body">
+											<p>For complete inforation about this plugin, please refer to </p>
+										<p><a href="https://summernote.org/" target="_blank">HTML Editor Site</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
 
 						<h3>MarkDown</h3>
+						<div class="row">
+							<div class="col-md-9">
+								<h4>Description</h4>
+								<p>Bootstrap-Markdown designed to be easily integrated with your bootstrap project. It exposes useful API that allow you to fully hook-in into the plugin</p>
+								<code class="pretty">
+									$("#some-textarea").markdown({autofocus:false,savable:false})
+								</code>
+								<br>
+								<h4>Features</h4>
+								<ul class="numeric-list green-bullet">
+									<li>Easy to Install, Simply download and attach your js, css with bootstrap.</li>
+									<li>Customize by Initializing various options and modules.</li>
+									<li>Open Source, Summernote is licensed under MIT and maintained by the community on.</li>
+									<li>Integration, Integrate it with any back-end. 3rd parties available in django, rails, angular.</li>
+									<li>etc</li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h4 class="panel-title">Color Picker</h4>
+									</div>
+									<div class="panel-body">
+											<p>For complete inforation about this plugin, please refer to </p>
+										<p><a href="https://summernote.org/" target="_blank">HTML Editor Site</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
 
-					</section>
 
-					<section id="widget" data-title="Widget Tools">
-						
-						<h1>Widget Tools</h1>
 
-						<h3>Working with Widget</h3>						
 
 					</section>
 
@@ -2103,11 +2906,256 @@
 						
 						<h1>Practice</h1>
 
+						<h3>Example</h3>
+						<p>How to Create <span class="text-danger">Laravel</span> module in about <b>4 minutes</b></p>
+						<p>Result can be vary depends on your machine.</p>
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1">
+								<video controls width="100%" height="auto">
+									<source src="video/DemoModule.mp4" type="video/mp4">   
+								</video>
+							</div>
+						</div>
+
+
 						<h3>Article</h3>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>To create sample module follow these step below:</p>
+                                <ul class="step-list">
+                                	<li>
+                                		<h4>Basic Information</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Click menu <span class="fa fa-caret-right"></span> <code>Laravel Project</code> <span class="fa fa-caret-right"></span> <code>New Module</code>. </p>
+                                		<p>Enter basic information about module</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Module Name</li>
+                                			<li>Module Title</li>
+                                			<li>Module Note</li>
+                                			<li>Module Description</li>
+                                		</ul>
+                                	</li>
+                                	<li>
+                                		<h4>Model</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Enter information about model</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Model Table</li>
+                                			<li>Primary Key</li>
+                                			<li>Fillable Field</li>
+                                		</ul>
+                                	</li>
+                                	<li>
+                                		<h4>Model Relationship</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Skip this part</p>
+                                	</li>
+                                	<li>
+                                		<h4>Controller Components</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Select component to be included</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Addition Model</li>
+                                			<li>Helpers</li>
+                                			<li>Facades</li>
+                                			<li>Packages</li>
+                                		</ul>
+                                	</li>
+                                	<li>
+                                		<h4>List Fields Option</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Set field option</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Display</li>
+                                			<li>Filtering</li>
+                                			<li>Export</li>
+                                			<li>Transform</li>
+                                			<li>CSS</li>
+                                			<li>Sort Ordering</li>
+                                		</ul>
+                                	</li>
+                                	<li>
+                                		<h4>Form Fields Option</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Set field option</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Form Display</li>
+                                			<li>Show Display</li>
+                                			<li>Input Type</li>
+                                		</ul>
+                                	</li>
+                                	<li>
+                                		<h4>Form Layout Option</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Set form layout option</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Layout</li>
+                                			<li>Type</li>
+                                			<li>Group Number</li>
+                                			<li>Group Title</li>
+                                		</ul>
+                                	</li>
+                                	<li>
+                                		<h4>Builder</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Set file to be render</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Controller</li>
+                                			<li>Model</li>
+                                			<li>View <span class="fa fa-caret-right"></span> List</li>
+                                			<li>View <span class="fa fa-caret-right"></span> Edit</li>
+                                			<li>View <span class="fa fa-caret-right"></span> Show</li>
+                                		</ul>
+                                	</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+								<div class="panel panel-success">
+									<div class="panel-heading">
+										<h4 class="panel-title">Watch Video</h4>
+									</div>
+									<div class="panel-body">
+
+										<a class="" data-toggle="modal" href='#modal-id-3'>Practice # 1</a>
+											<div class="modal fade" id="modal-id-3">
+												<div class="modal-dialog modal-lg">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+															<h4 class="modal-title">Demo Article</h4>
+														</div>
+														<div class="modal-body">
+
+															<div id="vid-cmdDemo" >
+																<video controls width="100%" height="auto">
+																	<source src="video/DemoArticle.mp4" type="video/mp4">   
+																</video>
+															</div>				
+															
+														</div>
+													</div>
+												</div>
+											</div>	
+
+									</div>
+								</div>
+
+                                
+                            </div>
+                        </div>
+
 
 						<h3>Category (Has Many)</h3>
+						<div class="row">
+							<div class="col-md-9">
+								<p>Example how to join one table with other table.</p>
+								<p>Follow below steps:</p>
+                                <ul class="step-list">
+                                	<li>
+                                		<h4>Basic Information</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Click menu <span class="fa fa-caret-right"></span> <code>Laravel Project</code> <span class="fa fa-caret-right"></span> <code>New Module</code>. </p>
+                                		<p>Enter basic information about module</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Module Name</li>
+                                			<li>Module Title</li>
+                                			<li>Module Note</li>
+                                			<li>Module Description</li>
+                                		</ul>
+                                	</li>
+                                	<li>
+                                		<h4>Model</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Enter information about model</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Model Table</li>
+                                			<li>Primary Key</li>
+                                			<li>Fillable Field</li>
+                                		</ul>
+                                	</li>
+                                	<li>
+                                		<h4>Model Relationship</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Enter information about relationship <code class="label label-danger">Required !</code></p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Click button <code>Add Relationship</code></li>
+                                			<li>Select model to be joined</li>
+                                			<li>Set relationship name (usually models name)</li>
+                                			<li>Set relationship type</li>
+                                			<li>Set foreign key</li>
+                                			<li>Set local key</li>
+                                			<li>Set apply to list if we want to show joined value in data list</li>
+                                		</ul>
+                                		<p></p>
+                                	</li>
+                                	<li>
+                                		<h4>Controller Components</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Select component to be included</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Addition Model</li>
+                                			<li>Helpers</li>
+                                			<li>Facades</li>
+                                			<li>Packages</li>
+                                		</ul>
+                                	</li>
+                                	<li>
+                                		<h4>List Fields Option</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Set field option</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Display</li>
+                                			<li>Filtering</li>
+                                			<li>Export</li>
+                                			<li>Transform</li>
+                                			<li>CSS</li>
+                                			<li>Sort Ordering</li>
+                                		</ul>
+                                	</li>
+                                	<li>
+                                		<h4>Form Fields Option</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Set field option</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Form Display</li>
+                                			<li>Show Display</li>
+                                			<li>Input Type</li>
+                                		</ul>
+                                	</li>
+                                	<li>
+                                		<h4>Form Layout Option</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Set form layout option</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Layout</li>
+                                			<li>Type</li>
+                                			<li>Group Number</li>
+                                			<li>Group Title</li>
+                                		</ul>
+                                	</li>
+                                	<li>
+                                		<h4>Builder</h4>
+                                		<hr class="bg-warning thin"></hr>
+                                		<p>Set file to be render</p>
+                                		<ul class="numeric-list green-bullet">
+                                			<li>Controller</li>
+                                			<li>Model</li>
+                                			<li>View <span class="fa fa-caret-right"></span> List</li>
+                                			<li>View <span class="fa fa-caret-right"></span> Edit</li>
+                                			<li>View <span class="fa fa-caret-right"></span> Show</li>
+                                		</ul>
+                                	</li>
+                                </ul>
 
-						<h3>Result</h3>
+								<p></p>
+								<p></p>
+							</div>
+							<div class="col-md-3">
+								
+							</div>
+						</div>
+
+
 
 					</section>
 

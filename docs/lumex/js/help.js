@@ -118,6 +118,38 @@ jQuery(document).ready(function($){
             });
         })
 
+
+        $('a.fancybox').fancybox();
+
+        $('a[role="fancymedia"]').fancybox({
+
+                // closeClick  : true,
+                // openEffect  : 'none',
+                // closeEffect : 'none',
+
+                // helpers : {
+                //     title : {
+                //         type : 'inside'
+                //     },
+                //     overlay : {
+                //         css : {
+                //             'background' : 'rgba(0,0,0,0.75)'
+                //         }
+                //     }
+                // },
+
+				afterShow: function() {
+					// After the show-slide-animation has ended - play the vide in the current slide
+					this.content.find('video').trigger('play')
+
+					// Attach the ended callback to trigger the fancybox.next() once the video has ended.
+					this.content.find('video').on('ended', function() {
+						$.fancybox.next();
+					});
+				}
+
+        });
+
     }
 
 
