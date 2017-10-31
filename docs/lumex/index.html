@@ -538,16 +538,16 @@
 														</div>
 														<div class="modal-body">
 
-															<div id="vid-cmdDemo" >
-																<video controls width="100%" height="auto">
-																	<source src="video/CmdDemo2.mp4" type="video/mp4">   
-																</video>
+															<div id="vid-cmdDemo" class="videoWrapper" >
+																<iframe width="560" height="315" src="https://www.youtube.com/embed/6qh9p6j93a8?rel=0" frameborder="0" allowfullscreen></iframe>
 															</div>				
 															
 														</div>
 													</div>
 												</div>
 											</div>	
+
+
 
 									</div>
 								</div>
@@ -2334,9 +2334,9 @@
 														<div class="modal-body">
 
 															<div>
-																<video controls width="100%" height="auto">
-																	<source src="video/DemoMenu.mp4" type="video/mp4">   
-																</video>
+																<div class="videoWrapper">
+																	<iframe width="560" height="315" src="https://www.youtube.com/embed/bv5_9KyC2lE?rel=0" frameborder="0" allowfullscreen></iframe>   
+																</div>
 															</div>				
 															
 														</div>
@@ -2911,9 +2911,9 @@
 						<p>Result can be vary depends on your machine.</p>
 						<div class="row">
 							<div class="col-md-10 col-md-offset-1">
-								<video controls width="100%" height="auto">
-									<source src="video/DemoModule.mp4" type="video/mp4">   
-								</video>
+								<div class="videoWrapper">
+									<iframe width="560" height="315" src="https://www.youtube.com/embed/3lbMMLMp3h4?rel=0" frameborder="0" allowfullscreen></iframe>   
+								</div>
 							</div>
 						</div>
 
@@ -3027,9 +3027,9 @@
 														<div class="modal-body">
 
 															<div id="vid-cmdDemo" >
-																<video controls width="100%" height="auto">
-																	<source src="video/DemoArticle.mp4" type="video/mp4">   
-																</video>
+																<div class="videoWrapper">
+																	<iframe width="560" height="315" src="https://www.youtube.com/embed/k9ZlaVgV0Mw?rel=0" frameborder="0" allowfullscreen></iframe>   
+																</div>
 															</div>				
 															
 														</div>
@@ -3045,59 +3045,26 @@
                         </div>
 
 
-						<h3>Category (Has Many)</h3>
+						<h3>Add Category (Join Table)</h3>
 						<div class="row">
 							<div class="col-md-9">
 								<p>Example how to join one table with other table.</p>
 								<p>Follow below steps:</p>
                                 <ul class="step-list">
                                 	<li>
-                                		<h4>Basic Information</h4>
-                                		<hr class="bg-warning thin"></hr>
-                                		<p>Click menu <span class="fa fa-caret-right"></span> <code>Laravel Project</code> <span class="fa fa-caret-right"></span> <code>New Module</code>. </p>
-                                		<p>Enter basic information about module</p>
-                                		<ul class="numeric-list green-bullet">
-                                			<li>Module Name</li>
-                                			<li>Module Title</li>
-                                			<li>Module Note</li>
-                                			<li>Module Description</li>
-                                		</ul>
-                                	</li>
-                                	<li>
-                                		<h4>Model</h4>
-                                		<hr class="bg-warning thin"></hr>
-                                		<p>Enter information about model</p>
-                                		<ul class="numeric-list green-bullet">
-                                			<li>Model Table</li>
-                                			<li>Primary Key</li>
-                                			<li>Fillable Field</li>
-                                		</ul>
-                                	</li>
-                                	<li>
                                 		<h4>Model Relationship</h4>
                                 		<hr class="bg-warning thin"></hr>
                                 		<p>Enter information about relationship <code class="label label-danger">Required !</code></p>
                                 		<ul class="numeric-list green-bullet">
                                 			<li>Click button <code>Add Relationship</code></li>
-                                			<li>Select model to be joined</li>
-                                			<li>Set relationship name (usually models name)</li>
-                                			<li>Set relationship type</li>
-                                			<li>Set foreign key</li>
-                                			<li>Set local key</li>
-                                			<li>Set apply to list if we want to show joined value in data list</li>
+                                			<li>Select model to be joined <span class="fa fa-caret-right"></span> <code>CATEGORY MODEL</code> </li>
+                                			<li>Set relationship name <span class="fa fa-caret-right"></span> <code>Category</code> </li>
+                                			<li>Set relationship type <span class="fa fa-caret-right"></span> <code>One to One</code> </li>
+                                			<li>Set foreign key <span class="fa fa-caret-right"></span> <code>Id</code></li>
+                                			<li>Set local key <span class="fa fa-caret-right"></span> <code>CatId</code> </li>
+                                			<li>Set apply to list to <code>CHEKCED</code> </li>
                                 		</ul>
                                 		<p></p>
-                                	</li>
-                                	<li>
-                                		<h4>Controller Components</h4>
-                                		<hr class="bg-warning thin"></hr>
-                                		<p>Select component to be included</p>
-                                		<ul class="numeric-list green-bullet">
-                                			<li>Addition Model</li>
-                                			<li>Helpers</li>
-                                			<li>Facades</li>
-                                			<li>Packages</li>
-                                		</ul>
                                 	</li>
                                 	<li>
                                 		<h4>List Fields Option</h4>
@@ -3123,17 +3090,6 @@
                                 		</ul>
                                 	</li>
                                 	<li>
-                                		<h4>Form Layout Option</h4>
-                                		<hr class="bg-warning thin"></hr>
-                                		<p>Set form layout option</p>
-                                		<ul class="numeric-list green-bullet">
-                                			<li>Layout</li>
-                                			<li>Type</li>
-                                			<li>Group Number</li>
-                                			<li>Group Title</li>
-                                		</ul>
-                                	</li>
-                                	<li>
                                 		<h4>Builder</h4>
                                 		<hr class="bg-warning thin"></hr>
                                 		<p>Set file to be render</p>
@@ -3150,9 +3106,39 @@
 								<p></p>
 								<p></p>
 							</div>
-							<div class="col-md-3">
-								
-							</div>
+                            <div class="col-md-3">
+								<div class="panel panel-success">
+									<div class="panel-heading">
+										<h4 class="panel-title">Watch Video</h4>
+									</div>
+									<div class="panel-body">
+
+										<a class="" data-toggle="modal" href='#modal-id-4' >Practice # 2</a>
+											<div class="modal fade" id="modal-id-4">
+												<div class="modal-dialog modal-lg">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+															<h4 class="modal-title">Demo Add Category</h4>
+														</div>
+														<div class="modal-body">
+
+															<div id="vid-cmdDemo" >
+																<div class="videoWrapper">
+																	<iframe width="560" height="315" src="https://www.youtube.com/embed/HUZgogrj6m4?rel=0" frameborder="0" allowfullscreen></iframe>   
+																</div>
+															</div>				
+															
+														</div>
+													</div>
+												</div>
+											</div>	
+
+									</div>
+								</div>
+
+                                
+                            </div>
 						</div>
 
 
